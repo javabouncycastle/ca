@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>  
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
-<mapper namespace="cn.com.sure.log.dao.AuditOpLogDAO">
-<insert id="insert" parameterType="cn.com.sure.log.entry.AuditOpLog">
+<mapper namespace="cn.com.sure.log.dao.RaAuditOpLogDAO">
+<insert id="insert" parameterType="cn.com.sure.log.entry.RaAuditOpLog">
 insert into ra_audit_log(
 	op_type,
 	op_action,
@@ -30,7 +30,7 @@ insert into ra_audit_log(
 
 </insert>
 
-	<select id="selectAll" parameterType="cn.com.sure.log.entry.AuditOpLog" resultType="cn.com.sure.log.entry.AuditOpLog">
+	<select id="selectAll" parameterType="cn.com.sure.log.entry.RaAuditOpLog" resultType="cn.com.sure.log.entry.RaAuditOpLog">
 		select 
 			id,
 			op_type as type,
@@ -47,7 +47,7 @@ insert into ra_audit_log(
 		 from ra_audit_log
 	</select>
 	
-		<select id="searchByCondition" parameterType="cn.com.sure.log.entry.AuditOpLog" resultType="cn.com.sure.log.entry.AuditOpLog">
+		<select id="searchByCondition" parameterType="cn.com.sure.log.entry.RaAuditOpLog" resultType="cn.com.sure.log.entry.RaAuditOpLog">
 		select 
 			id,
 			op_type as type,

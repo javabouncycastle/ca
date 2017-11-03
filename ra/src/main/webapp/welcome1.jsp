@@ -17,19 +17,6 @@
           		<li class="sub">
             		<a href="javascript:;">
               			<i class="fa fa-database"></i>
-              			<font style='font-family:"微软雅黑"'>密钥管理</font>
-              			<div class="pull-right"><span class="caret"></span>
-              		</div>
-            		</a>
-            		<ul class="templatemo-submenu">
-	              		<li>
-	              			<a href="<%=request.getContextPath()%>/algorithm/selectAll.do"><font style='font-family:"微软雅黑"'>密钥算法列表</font></a>
-	              		</li>
-            		</ul>
-          		</li>
-          		<li class="sub">
-            		<a href="javascript:;">
-              			<i class="fa fa-database"></i>
               			<font style='font-family:"微软雅黑"'>系统参数</font>
               			<div class="pull-right"><span class="caret"></span>
               		</div>

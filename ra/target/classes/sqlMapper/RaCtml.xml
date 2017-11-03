@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="cn.com.sure.ctml.dao.RaCertTemplateDAO">
+
+
+	<select id="selectAll" parameterType="cn.com.sure.ctml.entry.RaCertTemplate" resultType="cn.com.sure.ctml.entry.RaCertTemplate">
+		select 
+			id ,
+			ctml_name as ctmlName,
+			kpg_algorithm as kpgAlgorithm,
+			is_single as isSingle,
+			is_valid as isValid,
+			sign_cert_key_usage as signCertKeyUsage,
+			sign_cert_extended_key_usage as signCertExtendedKeyUsage,
+			enc_cert_key_usage as encCertKeyUsage,
+			enc_cert_extended_key_usage as encCertExtendedKeyUsage,
+			validity,
+			notes
+		 from 
+		 	ra_ctml 
+	</select>
+	
+	
+	<insert id="insert" parameterType="cn.com.sure.ctml.entry.RaCertTemplate">
+		insert into ca_ctml(
+			ctml_name,
+			kpg_algorithm,
+			is_single,
+			is_valid,
+			sign_cert_key_usage,
+			sign_cert_extended_key_usage,
+			enc_cert_key_usage,
+			enc_cert_extended_key_usage,
+			validity,
+			notes
+		)values(
+			#{ctmlName},
+			#{kpgAlgorithm},
+			#{isSingle},
+			#{isValid},
+			#{signCertKeyUsage},
+			#{signCertExtendedKeyUsage},
+			#{encCertKeyUsage},
+			#{encCertExtendedKeyUsage},
+			#{validity},
+			#{notes}
+		)
+	</insert>
+	
+	<delete id="deleteAll" parameterType="String" >
+		delete from ra_ctml 
+	</delete>
+		<update id="updateValid" parameterType="cn.com.sure.ctml.entry.RaCertTemplate">
+		update ca_ctml set is_valid=#{isValid} where id=#{id}
+	</update>
+</mapper>

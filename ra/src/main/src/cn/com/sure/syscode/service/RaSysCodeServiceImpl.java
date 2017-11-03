@@ -12,11 +12,10 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import cn.com.sure.common.RaConstants;
-import cn.com.sure.ra.RaApplicationexception;
 import cn.com.sure.ra.CaErrorMessageConstants;
+import cn.com.sure.ra.RaApplicationexception;
 import cn.com.sure.syscode.dao.RaSysCodeDAO;
 import cn.com.sure.syscode.entry.RaSysCode;
-import cn.com.sure.syscode.entry.RaSysCodeType;
 
 @Transactional(propagation = Propagation.REQUIRED)
 @Service("SysCodeService")
@@ -86,17 +85,6 @@ public class RaSysCodeServiceImpl implements RaSysCodeService{
 		return sysCodes;
 	}
 
-	@Override
-	public List<RaSysCode> selectByType(RaSysCode sysCode) {
-		LOG.debug("selectByType - start");
-		RaSysCodeType sysCodeType = new RaSysCodeType();
-		sysCodeType.setParaType(RaConstants.TYPE_ID_TASK_STATUS);
-		sysCode.setParaType(sysCodeType);
-		sysCode.setIsValid(RaConstants.YES_OR_NO_OPTION_YES);
-		List<RaSysCode> sysCodes = this.sysCodeDAO.findByType(sysCode);
-		LOG.debug("selectByType - end");
-		return sysCodes;
-	}
 
 	@Override
 	public List<RaSysCode> searchByCondition(RaSysCode sysCode) {
@@ -117,68 +105,6 @@ public class RaSysCodeServiceImpl implements RaSysCodeService{
 		return sysCodes;
 	}
 
-	/* (non-Javadoc)
-	 * @see cn.com.sure.syscode.service.SysCodeService#selectMin()
-	 */
-	@Override
-	public List<RaSysCode> selectMin() {
-		LOG.debug("selectMin - start");
-		RaSysCodeType sysCodeType = new RaSysCodeType();
-		sysCodeType.setParaType(RaConstants.KEY_NUM_MIN);
-		RaSysCode sysCode = new RaSysCode();
-		sysCode.setIsValid(RaConstants.YES_OR_NO_OPTION_YES);
-		sysCode.setParaType(sysCodeType);
-		List<RaSysCode> listMin = sysCodeDAO.selectMin(sysCode);
-		LOG.debug("selectMin - end");
-		return listMin;
-	}
-
-	/* (non-Javadoc)
-	 * @see cn.com.sure.syscode.service.SysCodeService#selectBuffer()
-	 */
-	@Override
-	public List<RaSysCode> selectBuffer() {
-		LOG.debug("selectMin - start");
-		RaSysCodeType sysCodeType = new RaSysCodeType();
-		sysCodeType.setParaType(RaConstants.DB_COMMIT_BUFFER);
-		RaSysCode sysCode = new RaSysCode();
-		sysCode.setIsValid(RaConstants.YES_OR_NO_OPTION_YES);
-		sysCode.setParaType(sysCodeType);
-		List<RaSysCode> sysList = sysCodeDAO.selectBuffer(sysCode);
-		LOG.debug("selectMin - end");
-		return sysList;
-	}
-
-	/* (non-Javadoc)
-	 * @see cn.com.sure.syscode.service.SysCodeService#selectGenKeyNum()
-	 */
-	@Override
-	public List<RaSysCode> selectGenKeyNum() {
-		LOG.debug("selectMin - start");
-		RaSysCodeType sysCodeType = new RaSysCodeType();
-		sysCodeType.setParaType(RaConstants.GEN_KEY_NUM);
-		RaSysCode sysCode = new RaSysCode();
-		sysCode.setIsValid(RaConstants.YES_OR_NO_OPTION_YES);
-		sysCode.setParaType(sysCodeType);
-		List<RaSysCode> sysList = sysCodeDAO.selectBuffer(sysCode);
-		LOG.debug("selectMin - end");
-		return sysList;
-	}
-
-	/* (non-Javadoc)
-	 * @see cn.com.sure.syscode.service.SysCodeService#selectBufSize(cn.com.sure.syscode.entry.SysCode)
-	 */
-	@Override
-	public List<RaSysCode> selectBufSize(RaSysCode sysCode) {
-		LOG.debug("selectBufSize - start");
-		RaSysCodeType sysCodeType = new RaSysCodeType();
-		sysCodeType.setParaType(RaConstants.DB_COMMIT_BUFFER);
-		sysCode.setParaType(sysCodeType);
-		sysCode.setIsValid(RaConstants.YES_OR_NO_OPTION_YES);
-		List<RaSysCode> codeBufSize = sysCodeDAO.findByType(sysCode);
-		LOG.debug("selectBufSize - end");
-		return codeBufSize;
-	}
 
 	/* (non-Javadoc)
 	 * @see cn.com.sure.syscode.service.SysCodeService#getServicePort()
@@ -186,14 +112,14 @@ public class RaSysCodeServiceImpl implements RaSysCodeService{
 	@Override
 	public List<RaSysCode> selectServicePort() {
 		LOG.debug("getServicePort - start");
-		RaSysCodeType sysCodeType = new RaSysCodeType();
+		/*RaSysCodeType sysCodeType = new RaSysCodeType();
 		sysCodeType.setParaType(RaConstants.TYPE_ID_TASK_STATUS);
 		RaSysCode sysCode = new RaSysCode();
 		sysCode.setParaType(sysCodeType);
 		sysCode.setIsValid(RaConstants.YES_OR_NO_OPTION_YES);
-		List<RaSysCode> sysCodes = this.sysCodeDAO.findByType(sysCode);
+		List<RaSysCode> sysCodes = this.sysCodeDAO.findByType(sysCode);*/
 		LOG.debug("getServicePort - start");
-		return sysCodes;
+		return null;
 	}
 
 

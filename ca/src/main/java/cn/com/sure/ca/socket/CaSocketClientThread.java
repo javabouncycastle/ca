@@ -17,10 +17,10 @@ import cn.com.sure.ca.CaApplicationexception;
 import cn.com.sure.ca.ResourceBundleSocketMessage;
 import cn.com.sure.ca.km.CaKeyPairAlgorithm;
 import cn.com.sure.common.CaConstants;
-import cn.com.sure.syscode.entry.SysCode;
-import cn.com.sure.syscode.entry.SysCodeType;
-import cn.com.sure.syscode.service.SysCodeService;
-import cn.com.sure.syscode.service.SysCodeTypeService;
+import cn.com.sure.syscode.entry.CaSysCode;
+import cn.com.sure.syscode.entry.CaSysCodeType;
+import cn.com.sure.syscode.service.CaSysCodeService;
+import cn.com.sure.syscode.service.CaSysCodeTypeService;
 
 import com.alibaba.fastjson.JSONArray;
 
@@ -33,11 +33,11 @@ public class CaSocketClientThread extends Thread{
 	
 	private static final Log LOG = LogFactory.getLog(CaSocketClientThread.class);
 	
-	private SysCodeService sysCodeService;
-	private SysCodeTypeService sysCodeTypeService;
+	private CaSysCodeService sysCodeService;
+	private CaSysCodeTypeService sysCodeTypeService;
 	
 	
-	public CaSocketClientThread(SysCodeService sysCodeService , SysCodeTypeService sysCodeTypeService) {
+	public CaSocketClientThread(CaSysCodeService sysCodeService , CaSysCodeTypeService sysCodeTypeService) {
 		this.sysCodeService=sysCodeService;
 		this.sysCodeTypeService=sysCodeTypeService;
 	}
@@ -102,8 +102,8 @@ public class CaSocketClientThread extends Thread{
 			
 			for(int i = 0; i< caKeyPairAlgorithms.size() ; i++){
 				
-				SysCode sysCode = new SysCode();
-				SysCodeType sysCodeType = new SysCodeType();
+				CaSysCode sysCode = new CaSysCode();
+				CaSysCodeType sysCodeType = new CaSysCodeType();
 				
 				sysCodeType = sysCodeTypeService.findIdByParaType(CaConstants.KEY_PAIR_ALGORITHM);
 				

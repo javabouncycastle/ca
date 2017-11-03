@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>  
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
-<mapper namespace="cn.com.sure.syscode.dao.SysCodeTypeDAO">  
+<mapper namespace="cn.com.sure.syscode.dao.CaSysCodeTypeDAO">  
 
-	<insert id="insert" parameterType="cn.com.sure.syscode.entry.SysCodeType">
+	<insert id="insert" parameterType="cn.com.sure.syscode.entry.CaSysCodeType">
 		insert into ca_sys_param_type(
 			para_type,
 			notes
@@ -12,7 +12,7 @@
 		)
 	</insert>
 	
-	<select id="selectById" parameterType="cn.com.sure.syscode.entry.SysCodeType" resultType="cn.com.sure.syscode.entry.SysCodeType">
+	<select id="selectById" parameterType="cn.com.sure.syscode.entry.CaSysCodeType" resultType="cn.com.sure.syscode.entry.CaSysCodeType">
 		select 
 			id,
 			para_type as paraType,
@@ -22,7 +22,7 @@
 		  id=#{id}
 	</select>
 	
-	<select id="findIdByParaType" parameterType="cn.com.sure.syscode.entry.SysCodeType" resultType="cn.com.sure.syscode.entry.SysCodeType">
+	<select id="findIdByParaType" parameterType="cn.com.sure.syscode.entry.CaSysCodeType" resultType="cn.com.sure.syscode.entry.CaSysCodeType">
 		select 
 			id,
 			para_type as paraType,
@@ -32,7 +32,7 @@
 		  para_type=#{paraType}
 	</select>
 	
-	<select id="selectAll" parameterType="cn.com.sure.syscode.entry.SysCodeType" resultType="cn.com.sure.syscode.entry.SysCodeType">
+	<select id="selectAll" parameterType="cn.com.sure.syscode.entry.CaSysCodeType" resultType="cn.com.sure.syscode.entry.CaSysCodeType">
 		select 
 			id,
 			para_type as paraType,
@@ -40,7 +40,7 @@
 		 from ca_sys_param_type
 	</select>
 	
-	<select id="findByType" parameterType="cn.com.sure.syscode.entry.SysCodeType" resultType="cn.com.sure.syscode.entry.SysCodeType">
+	<select id="findByType" parameterType="cn.com.sure.syscode.entry.CaSysCodeType" resultType="cn.com.sure.syscode.entry.CaSysCodeType">
 		select 
 			id,
 			para_type as paraType,
@@ -49,7 +49,7 @@
 			where para_type=#{paraType}
 	</select>
 	
-	<select id="searchByCondition" parameterType="cn.com.sure.syscode.entry.SysCodeType" resultType="cn.com.sure.syscode.entry.SysCodeType">
+	<select id="searchByCondition" parameterType="cn.com.sure.syscode.entry.CaSysCodeType" resultType="cn.com.sure.syscode.entry.CaSysCodeType">
 		select 
 			id,
 			para_type as paraType,
@@ -64,7 +64,7 @@
 		 	</if>
 	</select>
 	
-	<update id="update" parameterType="cn.com.sure.syscode.entry.SysCodeType">
+	<update id="update" parameterType="cn.com.sure.syscode.entry.CaSysCodeType">
 	 update ca_sys_param_type 
 		set 
 		 	para_type = #{paraType},

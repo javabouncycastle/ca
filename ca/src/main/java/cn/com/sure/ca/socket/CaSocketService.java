@@ -11,9 +11,10 @@ package cn.com.sure.ca.socket;
 public interface CaSocketService {
 
 	/**
+	 * @param reqinfo
 	 * @return
 	 */
-	byte[] synchronousKpg();
+	byte[] handleSocket(byte[] reqinfo);
 	
 
 	

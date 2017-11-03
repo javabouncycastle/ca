@@ -90,7 +90,7 @@ public class RaSysCodeController {
 		List<RaSysCode> sysCodes = this.sysCodeService.selectAll(sysCode);
 		List<RaSysCodeType> sysCodeTypes = this.sysCodeTypeService.selectAll(null);
 		LOG.debug("selectAll - end");
-		return new ModelAndView("syscode/syscodeList").addObject("sysCodes", sysCodes).addObject("sysCodeTypes",sysCodeTypes);
+		return new ModelAndView("syscode/raSyscodeList").addObject("sysCodes", sysCodes).addObject("sysCodeTypes",sysCodeTypes);
 	}
 	
 	

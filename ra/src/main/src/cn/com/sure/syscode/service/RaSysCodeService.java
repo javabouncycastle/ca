@@ -23,27 +23,6 @@ public interface RaSysCodeService {
 	RaSysCode selectById(Long id);
 
 	/**
-	 * @return
-	 */
-	List<RaSysCode> selectMin();
-
-	/**
-	 * @return
-	 */
-	List<RaSysCode> selectBuffer();
-
-	/**
-	 * @return
-	 */
-	List<RaSysCode> selectGenKeyNum();
-
-	/**
-	 * @param sysCode
-	 * @return
-	 */
-	List<RaSysCode> selectBufSize(RaSysCode sysCode);
-
-	/**
 	 * @return 
 	 * 
 	 */
@@ -84,10 +63,5 @@ public interface RaSysCodeService {
 	 */
 	void activate(Long id);
 
-	/**
-	 * @param sysCode
-	 * @return
-	 */
-	List<RaSysCode> selectByType(RaSysCode sysCode);
 
 }

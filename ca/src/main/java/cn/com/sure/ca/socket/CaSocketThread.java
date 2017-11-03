@@ -58,19 +58,22 @@ public class CaSocketThread extends Thread{
 				}
 			}
 			
-			byte[] responseByte=null;
+			byte[] response=null;
  	        
  	        try {
  	        	//调用socketService实现业务逻辑
-				
+ 	        	response = socketService.handleSocket(reqinfo);
 			} catch (Exception e) {
 				
 			}
 	        //返回 
 	        DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
-			byte[] byt = responseByte;
 	        
-	        dos.write(byt);
+	        byte[] responseLength = intToByte(response.length);
+	        
+	        dos.write(responseLength);
+	        dos.flush();
+	        dos.write(response);
 	        dos.flush();
 	        
 	        
@@ -89,5 +92,13 @@ public class CaSocketThread extends Thread{
 			nValue += (byaValue[i] & 0xFF) << (8 * (3 - i)); 
 		}
 		return nValue;
+	}
+	
+	public static byte[] intToByte(int nValue) {         
+		byte[] byaValue = new byte[4];         
+		for (int i = 0; i < 4; i++) {             
+			byaValue[i] = (byte) (nValue >> 8 * (3 - i) & 0xFF);
+		}
+		return byaValue;
 	}
 }

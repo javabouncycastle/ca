@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
 <mapper namespace="cn.com.sure.ca.template.dao.CertTemplateDAO">
 
-	<resultMap type="cn.com.sure.ca.template.entry.CertTemplate" id="CertTemplateResultMap">
+	<resultMap type="cn.com.sure.ca.template.entry.CaCertTemplate" id="CertTemplateResultMap">
 		<id column="id" javaType="String" property="id"/>
 		<result column="ctmlName" javaType="String" property="ctmlName"/>
 		<result column="isSingle" javaType="Integer" property="isSingle"/>
@@ -12,25 +12,25 @@
 		<result column="encCertKeyUsage" javaType="String" property="encCertKeyUsage"/>
 		<result column="encCertExtendedKeyUsage" javaType="String" property="encCertExtendedKeyUsage"/>
 		<result column="notes" javaType="String" property="notes"/>
-		<association property="kpgAlgorithm" javaType="cn.com.sure.syscode.entry.SysCode">
+		<association property="kpgAlgorithm" javaType="cn.com.sure.syscode.entry.CaSysCode">
 			<id column="TypeId" javaType="String" property="id"/>
 			<result column="paraCode" javaType="String" property="paraCode"/>
 			<result column="paraValue" javaType="String" property="paraValue"/>
 			<result column="SysIsValid" javaType="Integer" property="isValid"/>
 			<result column="SysNotes" javaType="String" property="notes"/>
-			<association property="paraType" javaType="cn.com.sure.syscode.entry.SysCodeType" >
+			<association property="paraType" javaType="cn.com.sure.syscode.entry.CaSysCodeType" >
 				<id column="TypeId" javaType="String" property="id"/>
 				<result column="typeParaType" javaType="String" property="paraType"/>
 				<result column="typeNotes" javaType="String" property="notes"/>
 				</association>
 		</association>
-		<association property="validity" javaType="cn.com.sure.syscode.entry.SysCode">
+		<association property="validity" javaType="cn.com.sure.syscode.entry.CaSysCode">
 			<id column="SysCodeIdDb" javaType="String" property="id"/>
 			<result column="paraCodeDb" javaType="String" property="paraCode"/>
 			<result column="paraValueDb" javaType="String" property="paraValue"/>
 			<result column="SysIsValidDb" javaType="Integer" property="isValid"/>
 			<result column="SysNotesDb" javaType="String" property="notes"/>
-			<association property="paraType" javaType="cn.com.sure.syscode.entry.SysCodeType">
+			<association property="paraType" javaType="cn.com.sure.syscode.entry.CaSysCodeType">
 				<id column="TypeIdDb" javaType="String" property="id"/>
 				<result column="typeParaTypeDb" javaType="String" property="paraType"/>
 				<result column="typeNotesDb" javaType="String" property="notes"/>
@@ -38,7 +38,7 @@
 		</association>
 	</resultMap>
 
-	<select id="selectAll" parameterType="cn.com.sure.ca.template.entry.CertTemplate" resultMap="CertTemplateResultMap">
+	<select id="selectAll" parameterType="cn.com.sure.ca.template.entry.CaCertTemplate" resultMap="CertTemplateResultMap">
 		select 
 			ctml.id as id,
 			ctml.ctml_name as ctmlName,
@@ -59,7 +59,29 @@
 		 	ctml.kpg_algorithm=csc.id
 	</select>
 	
-	<select id="findById" parameterType="cn.com.sure.ca.template.entry.CertTemplate" resultMap="CertTemplateResultMap">
+		<select id="selectStandby" parameterType="cn.com.sure.ca.template.entry.CaCertTemplate" resultMap="CertTemplateResultMap">
+		select 
+			ctml.id as id,
+			ctml.ctml_name as ctmlName,
+			ctml.kpg_algorithm as kpgAlgorithm,
+			ctml.is_single as isSingle,
+			ctml.is_valid as isValid,
+			ctml.sign_cert_key_usage as signCertKeyUsage,
+			ctml.sign_cert_extended_key_usage as signCertExtendedKeyUsage,
+			ctml.enc_cert_key_usage as encCertKeyUsage,
+			ctml.enc_cert_extended_key_usage as encCertExtendedKeyUsage,
+			ctml.validity as validity,
+			ctml.notes as notes,
+			csc.id as TypeId,
+			csc.para_type as typeParaType
+		 from 
+		 	ca_ctml ctml, ca_sys_code csc
+		 where 
+		 	ctml.kpg_algorithm=csc.id
+		 	and ctml.is_valid=#{isValid}
+	</select>
+	
+	<select id="findById" parameterType="cn.com.sure.ca.template.entry.CaCertTemplate" resultMap="CertTemplateResultMap">
 		select 
 			ctml.id as id,
 			ctml.ctml_name as ctmlName,
@@ -81,7 +103,7 @@
 		 	and ctml.id=#{id}
 	</select>
 	
-	<insert id="insert" parameterType="cn.com.sure.ca.template.entry.CertTemplate">
+	<insert id="insert" parameterType="cn.com.sure.ca.template.entry.CaCertTemplate">
 		insert into ca_ctml(
 			ctml_name,
 			kpg_algorithm,
@@ -110,11 +132,11 @@
 	<delete id="remove" parameterType="String" >
 		delete from ca_ctml where id=#{id}
 	</delete>
-		<update id="updateValid" parameterType="cn.com.sure.syscode.entry.SysCode">
+		<update id="updateValid" parameterType="cn.com.sure.syscode.entry.CaSysCode">
 		update ca_ctml set is_valid=#{isValid} where id=#{id}
 	</update>
 	
-	<!-- <update id="update" parameterType="cn.com.sure.ca.template.entry.CertTemplate">
+	<!-- <update id="update" parameterType="cn.com.sure.ca.template.entry.CaCertTemplate">
 		update ca_ctml
 		set
 			ctml_name=#{ctmlName},
